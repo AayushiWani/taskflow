@@ -1,0 +1,108 @@
+/* ============================================================
+   DESIGN TOKENS – variables.css
+   Central source of truth for all design values.
+   Change these to re-skin the entire app.
+   ============================================================ */
+
+:root {
+  /* ── Colors: Backgrounds ── */
+  --bg-primary:      #0a0a0f;
+  --bg-secondary:    #12121a;
+  --bg-surface:      #1a1a2e;
+  --bg-surface-hover:#22223a;
+  --bg-elevated:     #242438;
+
+  /* ── Colors: Text ── */
+  --text-primary:    #e8e8f0;
+  --text-secondary:  #9d9db5;
+  --text-tertiary:   #6b6b82;
+  --text-inverse:    #0a0a0f;
+
+  /* ── Colors: Accent (Violet → Blue gradient) ── */
+  --accent-primary:  #7c3aed;
+  --accent-secondary:#3b82f6;
+  --accent-gradient:  linear-gradient(135deg, #7c3aed, #3b82f6);
+  --accent-glow:     rgba(124, 58, 237, 0.25);
+
+  /* ── Colors: Semantic ── */
+  --color-success:   #22c55e;
+  --color-success-bg:rgba(34, 197, 94, 0.12);
+  --color-warning:   #f59e0b;
+  --color-warning-bg:rgba(245, 158, 11, 0.12);
+  --color-danger:    #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-info:      #06b6d4;
+  --color-info-bg:   rgba(6, 182, 212, 0.12);
+
+  /* ── Colors: Category Badges ── */
+  --cat-germany:     #7c3aed;
+  --cat-internship:  #3b82f6;
+  --cat-ielts:       #f59e0b;
+  --cat-german:      #22c55e;
+  --cat-personal:    #ec4899;
+
+  /* ── Colors: Priority ── */
+  --priority-high:   #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low:    #3b82f6;
+
+  /* ── Typography ── */
+  --font-family:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs:    0.75rem;   /* 12px */
+  --font-size-sm:    0.8125rem; /* 13px */
+  --font-size-base:  0.9375rem; /* 15px */
+  --font-size-md:    1.0625rem; /* 17px */
+  --font-size-lg:    1.25rem;   /* 20px */
+  --font-size-xl:    1.5rem;    /* 24px */
+  --font-size-2xl:   2rem;      /* 32px */
+  --font-size-3xl:   2.5rem;    /* 40px */
+  --font-weight-normal:  400;
+  --font-weight-medium:  500;
+  --font-weight-semibold:600;
+  --font-weight-bold:    700;
+  --line-height:     1.6;
+
+  /* ── Spacing (4px base) ── */
+  --space-1:  0.25rem;  /* 4px  */
+  --space-2:  0.5rem;   /* 8px  */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ── Border Radius ── */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-full:9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow:0 0 20px rgba(124, 58, 237, 0.15);
+
+  /* ── Transitions ── */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-smooth:  350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Layout ── */
+  --sidebar-width:      240px;
+  --sidebar-collapsed:  72px;
+  --header-height:      0px;
+  --content-max-width:  1200px;
+
+  /* ── Z-Index Scale ── */
+  --z-base:      1;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+}

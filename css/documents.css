@@ -1,0 +1,381 @@
+/* ============================================================
+   DOCUMENTS – documents.css
+   Document checklist cards with edit, reorder, and status
+   controls, progress bar, notes, and emoji picker.
+   ============================================================ */
+
+/* ── Documents Progress ── */
+.documents-progress {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+.documents-progress__info {
+  flex: 1;
+}
+.documents-progress__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+.documents-progress__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+.documents-progress__percentage {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+/* ── Documents Toolbar ── */
+.documents-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+.documents-toolbar__count {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* ── Document Grid ── */
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ── Document Card ── */
+.document-card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+.document-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Status-based styling */
+.document-card--uploaded {
+  border-color: rgba(34, 197, 94, 0.2);
+}
+.document-card--uploaded::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-success);
+}
+.document-card--in-progress {
+  border-color: rgba(245, 158, 11, 0.15);
+}
+.document-card--in-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-warning);
+}
+
+/* ── Card Header: Icon + Actions ── */
+.document-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+.document-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.document-card--missing .document-card__icon {
+  background: rgba(255, 255, 255, 0.04);
+}
+.document-card--in-progress .document-card__icon {
+  background: var(--color-warning-bg);
+}
+.document-card--uploaded .document-card__icon {
+  background: var(--color-success-bg);
+}
+
+/* ── Card Actions Row ── */
+.document-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ── Reorder Buttons ── */
+.document-card__reorder {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+.document-card:hover .document-card__reorder {
+  opacity: 1;
+}
+.document-card__reorder-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 16px;
+  border-radius: 4px;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+}
+.document-card__reorder-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+.document-card__reorder-btn--disabled,
+.document-card__reorder-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.document-card__reorder-btn svg {
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ── Edit Button ── */
+.document-card__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-md);
+  color: var(--text-tertiary);
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+.document-card:hover .document-card__edit-btn {
+  opacity: 1;
+}
+.document-card__edit-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+.document-card__edit-btn svg {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ── Status Select ── */
+.document-card__status-select {
+  padding: var(--space-1) var(--space-3);
+  padding-right: var(--space-6);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236b6b82' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+}
+.document-card__status-select--missing {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+.document-card__status-select--in-progress {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+.document-card__status-select--uploaded {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+.document-card__status-select option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* ── Card Name ── */
+.document-card__name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+/* ── Google Drive Integration ── */
+.document-card__drive {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.document-card__drive-input-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+.document-card__drive-input-group:focus-within {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.document-card__drive-icon {
+  padding-left: var(--space-2);
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+}
+.document-card__drive-icon svg {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+.document-card__drive-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--font-size-xs);
+  padding: var(--space-2);
+  outline: none;
+}
+.document-card__drive-save {
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  padding: var(--space-1) var(--space-3);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 2px;
+  transition: all var(--transition-fast);
+}
+.document-card__drive-save:hover {
+  background: var(--accent-primary);
+  color: white;
+}
+.document-card__drive-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.document-card__drive-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  flex: 1;
+  padding: var(--space-2);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.document-card__drive-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+}
+.document-card__drive-btn svg {
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  width: 14px;
+  height: 14px;
+}
+.document-card__updated {
+  margin-top: var(--space-3);
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  text-align: right;
+}
+
+/* ══════════════════════════════════════════
+   EMOJI PICKER (in modal)
+   ══════════════════════════════════════════ */
+
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+.emoji-option {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.emoji-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.1);
+}
+.emoji-option--active {
+  border-color: var(--accent-primary);
+  background: rgba(124, 58, 237, 0.15);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* ── Documents Responsive ── */
+@media (max-width: 768px) {
+  .documents-progress {
+    flex-direction: column;
+    text-align: center;
+  }
+  .documents-grid {
+    grid-template-columns: 1fr;
+  }
+  /* Always show reorder and edit buttons on mobile (no hover) */
+  .document-card__reorder,
+  .document-card__edit-btn {
+    opacity: 1;
+  }
+  .documents-toolbar {
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+}
