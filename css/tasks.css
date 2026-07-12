@@ -151,6 +151,12 @@
 
 /* ── Tasks Responsive ── */
 @media (max-width: 768px) {
+  /* Prevent horizontal flex blowout on small screens */
+  .main, .main__container, #section-tasks, .task-list {
+    min-width: 0;
+    max-width: 100vw;
+  }
+  
   .task-card__actions {
     opacity: 1;
   }
@@ -168,10 +174,12 @@
   }
   .task-filter-select {
     width: 100%;
+    min-height: 44px; /* Accessible tap target */
   }
   #tasks-add-btn {
     width: 100%;
     justify-content: center;
+    min-height: 44px; /* Accessible tap target */
   }
   
   /* Category tabs horizontally scrollable with hidden scrollbars */
@@ -179,25 +187,60 @@
     flex-wrap: nowrap;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
   #task-category-tabs::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
   }
+  .tab {
+    min-height: 44px; /* Accessible tap target */
+  }
   
-  /* Allow task badges and metadata to wrap */
+  /* Ensure every task card fits entirely within screen width */
+  .task-card {
+    padding: var(--space-3);
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .task-card__content {
+    min-width: 0; /* crucial for preventing flex child blowout */
+    width: 100%;
+  }
+  
+  /* Allow task badges and metadata to wrap naturally */
   .task-card__header,
   .task-card__meta {
     flex-wrap: wrap;
+    gap: var(--space-2);
   }
   
-  /* Slightly reduce card padding */
-  .task-card {
-    padding: var(--space-3) var(--space-4);
+  /* Prevent text from overflowing */
+  .task-card__title,
+  .task-card__description {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
   
-  /* Improve checkbox alignment */
+  /* Reduce font sizes slightly for mobile readability */
+  .task-card__title {
+    font-size: var(--font-size-sm);
+  }
+  .task-card__description {
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Improve checkbox alignment and accessible tap area */
   .task-card__checkbox {
-    margin-top: 4px;
+    margin-top: 0;
+  }
+  .task-card__checkbox .checkbox {
+    padding: 10px;
+    margin: -10px;
+    margin-right: 0;
   }
 }
 
